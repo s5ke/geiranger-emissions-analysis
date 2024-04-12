@@ -21,3 +21,4 @@ https://www.erdkunde.uni-bonn.de/article/view/2964
 # Setup
 1. copy relevant data input into ./data
 2. run main.R to load and prepare data and get dependencies
+3. scripts in ./src/analysis/ can then be run individually
