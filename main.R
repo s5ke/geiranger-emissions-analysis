@@ -16,7 +16,18 @@ source("../dependencies.R")
 
 ## Input
 # load data
+load("/home/svenja/workspaces/geiranger-emissions-analysis/input-data/input2020_2023") # input
 
+# adjust time (e.g. years to be included)
+firstYear <- 2015
+lastYear <- 2020
+nYears <- lastYear - firstYear
 
+## create constants
+source("../src/constants.R")
+
+## create functions
+source("../src/services.R")
 
 ## run data preperation scripts
+source("../src/data-preperation.R")
