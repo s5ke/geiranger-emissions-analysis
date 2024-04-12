@@ -17,3 +17,7 @@ appearance at port.
 
 # Data
 https://www.erdkunde.uni-bonn.de/article/view/2964 
+
+# Setup
+1. copy relevant data input into ./data
+2. run main.R to load and prepare data and get dependencies
