@@ -1,4 +1,4 @@
-# geiranger-Fjord: Analysis of ship-related emissions
+# Geiranger-Fjord: Analysis of ship-related emissions
 Scripts for analysing and modelling ship emissions in the Geiranger-Fjord, Norway
 
 # Info
