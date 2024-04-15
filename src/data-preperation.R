@@ -24,6 +24,7 @@ month <- input$month
 old <- unique(input$month)
 new <- c("Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun")
 month[month %in% old] <- new[match(month, old, nomatch = 0)]
+input$month <- month
 
 # calculate mean for temperature and radiation (measured at different elevations)
 input$T_mean <- rowMeans(input[, temp_var], na.rm = TRUE)

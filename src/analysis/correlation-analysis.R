@@ -7,8 +7,16 @@ input_bysite <- split(input_restructured, input_restructured$site)
 cor <- list()
 df_meteo <- list()
 for (i in seq_along(input_bysite)) {
-  split_daynight_var <- c("radiation_mean", "inversion_ratio", "relative_humidity") # variables zo split into day and night
-  input_bysite[[i]] <- split_daynight(input_bysite[[i]], split_daynight_var, "day_night")
+  split_daynight_var <- c(
+    "radiation_mean",
+    "inversion_ratio",
+    "relative_humidity"
+  ) # variables zo split into day and night
+  input_bysite[[i]] <- split_daynight(
+    input_bysite[[i]],
+    split_daynight_var,
+    "day_night"
+  )
 
   meteo_var_daynight <- c(
     meteo_var,
@@ -27,8 +35,12 @@ for (i in seq_along(input_bysite)) {
   cor[[i]]$var <- rownames(cor[[i]])
 }
 correlation_results <- as.data.frame(do.call(rbind, cor))
-correlation_results$elevation <- rep(elevation, each = nrow(correlation_results) / 3)
-correlation_results$elevation <- factor(correlation_results$elevation, levels = elevation)
+correlation_results$elevation <- rep(elevation,
+  each = nrow(correlation_results) / 3
+)
+correlation_results$elevation <- factor(correlation_results$elevation,
+  levels = elevation
+)
 
 
 # Plot
@@ -51,6 +63,10 @@ pCor <- ggplot(correlation_results) +
   labs(x = "", y = "Pearson's correlation coefficient")
 pCor
 
-cairo_pdf("correlation_pm_meteo.pdf", width = 8, height = 5, pointsize = 10)  
+cairo_pdf("correlation_pm_meteo.pdf",
+  width = 8,
+  height = 5,
+  pointsize = 10
+)
 pCor
 dev.off()
