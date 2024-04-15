@@ -16,4 +16,3 @@ input_meta_daily <- aggregate(input_restructured[, metadata],
 
 input_daily <- as.data.frame(cbind(input_ships_daily, input_data_daily[, -1], input_meta_daily[, -1]))
 colnames(input_daily)[1] <- "date"
-

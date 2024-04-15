@@ -8,6 +8,8 @@ palette_elevation <- c("#00204d", "#7c7b78", "#ffea46")
 
 palette_meteo <- c("black", "darkred", "#00204d", "#52648d", "#7c7b78", "#cbba69", "#ffea46")
 
+palette_ships <- c("#00204d", "#52648d")
+
 # meterological variables to be included
 meteo_var <- c(
     "air_pressure",
@@ -132,6 +134,13 @@ metadata <- c(
 data_var <- c(
     meteo_var,
     "PM2.5"
+)
+
+ships_labels <- c(
+    "Ferry",
+    "Hurtigruten dummy",
+    "All",
+    "Cruise ships"
 )
 
 # Day and Night hours for Norway (Geiranger)
