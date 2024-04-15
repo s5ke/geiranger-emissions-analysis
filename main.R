@@ -32,3 +32,4 @@ source("../src/services.R")
 ## run data preperation scripts
 source("../src/data-preperation.R")
 source("../src/get-time-in-port.R")
+source("../src/aggregate-hourly-data.R")

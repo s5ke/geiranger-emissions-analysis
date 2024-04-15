@@ -40,5 +40,6 @@ cruise_ships <- ship_names[! ship_names %in% c(hurtigruten, "Ferry")]
 input_ships$cruise_ships <- rowSums(input_ships[, cruise_ships])
 
 # Add metadata to dataframe
-metadata <- input_restructured[! input_restructured %in% meteo_var]
-input_ships <- as.data.frame(cbind(metadata, input_ships))
+input_metadata <- input_restructured[! input_restructured %in% meteo_var]
+input_ships_meta <- as.data.frame(cbind(input_metadata, input_ships))
+input_ships_data <- as.data.frame(cbind(input_restructured, input_ships))

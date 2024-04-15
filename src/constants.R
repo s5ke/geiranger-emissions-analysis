@@ -119,6 +119,21 @@ levels_elev <- c(
     "1450 m a.s.l."
 )
 
+metadata <- c(
+    "site",
+    "elevation",
+    "date",
+    "year",
+    "month",
+    "hour",
+    "season"
+)
+
+data_var <- c(
+    meteo_var,
+    "PM2.5"
+)
+
 # Day and Night hours for Norway (Geiranger)
 # 0 = night, 1 = twilight, 2 = day
 day_night <- list(
