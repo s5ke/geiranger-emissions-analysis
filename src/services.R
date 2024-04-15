@@ -34,3 +34,13 @@ get_season <- function(date) {
     season[season %in% old] <- new[match(season, old, nomatch = 0)]
     season
 }
+
+# get names of ships from input vector of form ("[name0], [name1]", "[name2]", ...)
+get_ship_names <- function(ships) {
+    result <- gsub("\\,|\\[|\\]", "", ships)
+    result <- result[!result %in% c("")]
+    result <- paste0(result, collapse = " ")
+    result <- str_split_1(result, "' '")
+    result <- unique(gsub("\\'", "", result))
+    result
+}

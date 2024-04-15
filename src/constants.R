@@ -6,7 +6,7 @@ palette_light <- rgb(col2rgb(main_palette)[1, ], col2rgb(main_palette)[2, ], col
 
 palette_elevation <- c("#00204d", "#7c7b78", "#ffea46")
 
-palette2 <- c("black", "#00204d", "#52648d", "#7c7b78", "#cbba69", "#ffea46")
+palette_meteo <- c("black", "darkred", "#00204d", "#52648d", "#7c7b78", "#cbba69", "#ffea46")
 
 # meterological variables to be included
 meteo_var <- c(
@@ -36,6 +36,33 @@ meteo_var <- c(
     "avWS14"
 )
 
+meteo_elevation <- c(
+    "0 m a.s.l.",
+    "0 m a.s.l.",
+    "0 m a.s.l.",
+    "0 m a.s.l.",
+    "933 m a.s.l.",
+    "1450 m a.s.l.",
+    "average",
+    "0 m a.s.l.",
+    "770 m a.s.l.",
+    "933 m a.s.l.",
+    "1280 m a.s.l.",
+    "1450 m a.s.l.",
+    "average",
+    "none",
+    "0 m a.s.l.",
+    "1450 m a.s.l.",
+    "0 m a.s.l.",
+    "1450 m a.s.l.",
+    "0 m a.s.l.",
+    "0 m a.s.l.",
+    "0 m a.s.l.",
+    "1450 m a.s.l.",
+    "1450 m a.s.l.",
+    "1450 m a.s.l."
+)
+
 temp_var <- c(
     "T_00",
     "T_07",
@@ -50,10 +77,47 @@ radiation_var <- c(
     "R_14"
 )
 
+meteo_labels <- c(
+    "air pressure [hPa]",
+    "precipitation [mm]",
+    "relative humidity [%]",
+    "radiation [W/m²]",
+    "radiation [W/m²]",
+    "radiation [W/m²]",
+    "radiation [W/m²]",
+    "temperature [°C]",
+    "temperature [°C]",
+    "temperature [°C]",
+    "temperature [°C]",
+    "temperature [°C]",
+    "temperature [°C]",
+    "inversion ratio [°K]",
+    "wind direction (east/west)",
+    "wind direction (east/west)",
+    "wind direction (north/south)",
+    "wind direction (north/south)",
+    "average wind speed [m/s]",
+    "maximum wind speed [m/s]",
+    "minimum wind speed [m/s]",
+    "average wind speed [m/s]",
+    "maximum wind speed [m/s]",
+    "minimum wind speed [m/s]"
+)
+
 # Levels
 site <- c("Geiranger", "Fjordcentre", "Dalen")
 elevation <- c("2 m a.s.l.", "90 m a.s.l.", "420 m a.s.l.")
 season <- c("spring", "summer", "autumn", "winter")
+months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+levels_elev <- c(
+    "none",
+    "average",
+    "0 m a.s.l.",
+    "770 m a.s.l.",
+    "933 m a.s.l.",
+    "1280 m a.s.l.",
+    "1450 m a.s.l."
+)
 
 # Day and Night hours for Norway (Geiranger)
 # 0 = night, 1 = twilight, 2 = day

@@ -1,14 +1,25 @@
 ## calculates correlations between meteorological measurements and PM2.5 by season
 
 # split by site
-input_byseason <- split(input_restructured, list(input_restructured$site, input_restructured$season))
+input_byseason <- split(
+  input_restructured,
+  list(input_restructured$site, input_restructured$season)
+)
 
 # calculate correlation coefficient, p-values, and ci
 cor <- list()
 df_meteo <- list()
 for (i in seq_along(input_byseason)) {
-  split_daynight_var <- c("radiation_mean", "inversion_ratio", "relative_humidity") # variables zo split into day and night
-  input_byseason[[i]] <- split_daynight(input_byseason[[i]], split_daynight_var, "day_night")
+  split_daynight_var <- c(
+    "radiation_mean",
+    "inversion_ratio",
+    "relative_humidity"
+  ) # variables zo split into day and night
+  input_byseason[[i]] <- split_daynight(
+    input_byseason[[i]],
+    split_daynight_var,
+    "day_night"
+  )
 
   meteo_var_daynight <- c(
     meteo_var,
@@ -26,11 +37,18 @@ for (i in seq_along(input_byseason)) {
   )
   cor[[i]]$var <- rownames(cor[[i]])
   cor[[i]]$season <- rep(first(input_byseason[[i]]$season), nrow(cor[[i]]))
-  cor[[i]]$elevation <- rep(first(input_byseason[[i]]$elevation), nrow(cor[[i]]))
+  cor[[i]]$elevation <- rep(
+    first(input_byseason[[i]]$elevation),
+    nrow(cor[[i]])
+  )
 }
 correlation_results <- as.data.frame(do.call(rbind, cor))
-correlation_results$elevation <- factor(correlation_results$elevation, levels = elevation)
-correlation_results$season <- factor(correlation_results$season, levels = season)
+correlation_results$elevation <- factor(correlation_results$elevation,
+  levels = elevation
+)
+correlation_results$season <- factor(correlation_results$season,
+  levels = season
+)
 
 # Plot
 pCor <- ggplot(correlation_results) +
@@ -53,6 +71,10 @@ pCor <- ggplot(correlation_results) +
   facet_wrap(~season, nrow = 4)
 pCor
 
-cairo_pdf("correlation_pm_meteo.pdf", width = 8, height = 5, pointsize = 10)  
+cairo_pdf("correlation_pm_meteo_season.pdf",
+  width = 8,
+  height = 14,
+  pointsize = 10
+)
 pCor
 dev.off()
