@@ -55,25 +55,24 @@ df_meteo_monthly$elev <- elev
 df_meteo_monthly$month <- factor(df_meteo_monthly$month, levels = months)
 df_meteo_monthly$elev <- factor(df_meteo_monthly$elev, levels = levels_elev)
 
-pMeteoMonthly <- ggplot(df_meteo_monthly) +
+p_meteo_monthly <- ggplot(df_meteo_monthly) +
   geom_pointrange(aes(
     x = month, y = value, ymin = value - se, ymax = value + se,
     group = paste(month, var), col = elev
   ), size = .2) +
-  #  geom_line(aes(x = month, y = value, group = paste(var, elev), col = elev), size = .3, alpha = .5)+
   theme_light() +
   scale_color_manual(values = palette_meteo) +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "", y = "Environmental variable", col = "elevation") +
   facet_wrap(~var, scale = "free_y", ncol = 1)
-pMeteoMonthly
+p_meteo_monthly
 
 cairo_pdf("meteorological_variables_monthly.pdf",
   width = 6,
   height = 15,
   pointsize = 10
 )
-pMeteoMonthly
+p_meteo_monthly
 dev.off()
 
 # daily
@@ -88,20 +87,36 @@ df_meteo$group <- paste(
 
 # aggregate data (by DOY)
 var <- aggregate(df_meteo,
-  by = list(doy = df_meteo$doy, daynight = df_meteo$daynight, group = df_meteo$group),
+  by = list(
+    doy = df_meteo$doy,
+    daynight = df_meteo$daynight,
+    group = df_meteo$group
+  ),
   function(x) first(na.omit(x))
 )$var
 elev <- aggregate(df_meteo,
-  by = list(doy = df_meteo$doy, daynight = df_meteo$daynight, group = df_meteo$group),
+  by = list(
+    doy = df_meteo$doy,
+    daynight = df_meteo$daynight,
+    group = df_meteo$group
+  ),
   function(x) first(x)
 )$elev
 se <- aggregate(df_meteo,
-  by = list(doy = df_meteo$doy, daynight = df_meteo$daynight, group = df_meteo$group),
+  by = list(
+    doy = df_meteo$doy,
+    daynight = df_meteo$daynight,
+    group = df_meteo$group
+  ),
   function(x) sd(x, na.rm = TRUE) / sqrt(length(x))
 )$value
 
 df_meteo_daily <- aggregate(df_meteo,
-  by = list(doy = df_meteo$doy, daynight = df_meteo$daynight, group = df_meteo$group),
+  by = list(
+    doy = df_meteo$doy,
+    daynight = df_meteo$daynight,
+    group = df_meteo$group
+  ),
   function(x) mean(x, na.rm = TRUE)
 )
 df_meteo_daily <- df_meteo_daily[, 1:4]
@@ -117,24 +132,40 @@ new <- meteo_labels
 x[x %in% old] <- new[match(x, old, nomatch = 0)]
 df_meteo_daily$var <- x
 
-pMeteoDaily <- ggplot(df_meteo_daily) +
+p_meteo_daily <- ggplot(df_meteo_daily) +
   geom_ribbon(aes(
     x = doy, y = value, ymin = value - se, ymax = value + se,
     group = paste(doy, var, elev, daynight), fill = elev
   ), alpha = .2) +
-  geom_line(aes(x = doy, y = value, group = paste(var, elev, daynight), linetype = daynight, col = elev), size = .3) +
+  geom_line(
+    aes(
+      x = doy,
+      y = value,
+      group = paste(var, elev, daynight),
+      linetype = daynight,
+      col = elev
+    ),
+    size = .3
+  ) +
   theme_light() +
   scale_color_manual(values = palette_meteo) +
   scale_fill_manual(values = palette_meteo) +
   scale_x_continuous(expand = c(0, 0)) +
   theme(axis.text.x = element_text(angle = 90)) +
-  labs(linetype = "", x = "Day of year", y = "Environmental variable", col = "elevation", fill = "elevation") +
+  labs(
+    linetype = "",
+    x = "Day of year",
+    y = "Environmental variable",
+    col = "elevation",
+    fill = "elevation"
+  ) +
   facet_wrap(~var, scale = "free_y", ncol = 1)
-pMeteoDaily
+p_meteo_daily
 
-cairo_pdf("meteorological_variables_daily.pdf", 
-width = 7, 
-height = 13, 
-pointsize = 10)
-pMeteoDaily
+cairo_pdf("meteorological_variables_daily.pdf",
+  width = 7,
+  height = 13,
+  pointsize = 10
+)
+p_meteo_daily
 dev.off()

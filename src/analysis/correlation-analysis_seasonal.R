@@ -1,4 +1,5 @@
-## calculates correlations between meteorological measurements and PM2.5 by season
+## calculates correlations
+## between meteorological measurements and PM2.5 by season
 
 # split by site
 input_byseason <- split(
@@ -51,7 +52,7 @@ correlation_results$season <- factor(correlation_results$season,
 )
 
 # Plot
-pCor <- ggplot(correlation_results) +
+p_cor <- ggplot(correlation_results) +
   geom_hline(yintercept = 0, col = "grey") +
   geom_hline(yintercept = c(0.4, -0.4), col = "grey", linetype = "dashed") +
   geom_linerange(aes(
@@ -69,12 +70,12 @@ pCor <- ggplot(correlation_results) +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "", y = "Pearson's correlation coefficient") +
   facet_wrap(~season, nrow = 4)
-pCor
+p_cor
 
 cairo_pdf("correlation_pm_meteo_season.pdf",
   width = 8,
   height = 14,
   pointsize = 10
 )
-pCor
+p_cor
 dev.off()

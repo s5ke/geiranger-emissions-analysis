@@ -44,7 +44,7 @@ correlation_results$elevation <- factor(correlation_results$elevation,
 
 
 # Plot
-pCor <- ggplot(correlation_results) +
+p_cor <- ggplot(correlation_results) +
   geom_hline(yintercept = 0, col = "grey") +
   geom_hline(yintercept = c(0.4, -0.4), col = "grey", linetype = "dashed") +
   geom_linerange(aes(
@@ -61,12 +61,12 @@ pCor <- ggplot(correlation_results) +
   scale_fill_manual(values = palette_light) +
   theme(axis.text.x = element_text(angle = 90)) +
   labs(x = "", y = "Pearson's correlation coefficient")
-pCor
+p_cor
 
 cairo_pdf("correlation_pm_meteo.pdf",
   width = 8,
   height = 5,
   pointsize = 10
 )
-pCor
+p_cor
 dev.off()
