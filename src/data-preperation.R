@@ -42,10 +42,14 @@ new <- c(
 month[month %in% old] <- new[match(month, old, nomatch = 0)]
 input$month <- month
 
-# calculate mean for temperature and radiation
+# calculate mean
 # (measured at different elevations)
 input$T_mean <- rowMeans(input[, temp_var], na.rm = TRUE)
 input$R_mean <- rowMeans(input[, radiation_var], na.rm = TRUE)
+input$U_WD_mean <- rowMeans(input[, UWD_var], na.rm = TRUE)
+input$V_WD_mean <- rowMeans(input[, VWD_var], na.rm = TRUE)
+input$mxWS_mean <- rowMeans(input[, mxWS_var], na.rm = TRUE)
+input$avWS_mean <- rowMeans(input[, avWS_var], na.rm = TRUE)
 
 # restructure input
 input_restructured <- data.frame(
@@ -82,6 +86,10 @@ input_restructured <- data.frame(
   mxWS14 = rep(input$mxWS_14, 3),
   mnWS14 = rep(input$mnWS_14, 3),
   avWS14 = rep(input$avWS_14, 3),
+  UWD_mean = rep(input$U_WD_mean, 3),
+  VWD_mean = rep(input$V_WD_mean, 3),
+  mxWS_mean = rep(input$mxWS_mean, 3),
+  avWS_mean = rep(input$avWS_mean, 3),
   ships = rep(input$Model_PM2.5_All_Ships_Contributors, 3),
   model = rep(input$Model_PM2.5_All_Ships, 3)
 )

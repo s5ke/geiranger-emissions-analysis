@@ -79,3 +79,5 @@ library(dendRoAnalyst)
 
 library(plyr)
 library(dplR)
+library(factoextra)
+library(cluster)
