@@ -79,3 +79,4 @@ library(dendRoAnalyst)
 
 library(plyr)
 library(dplR)
+library(cluster)

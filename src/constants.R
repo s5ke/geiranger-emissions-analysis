@@ -31,6 +31,9 @@ palette_meteo <- c(
   "#ffea46"
 )
 
+colfunc <- colorRampPalette(c("#00204d",  "#ffea46"))
+palette_cluster <- colfunc(10)
+
 palette_ships <- c(
   "#00204d",
   "#52648d"
@@ -71,7 +74,11 @@ meteo_var <- c(
   "avWS00",
   "mxWS14",
   "mnWS14",
-  "avWS14"
+  "avWS14",
+  "UWD_mean",
+  "VWD_mean",
+  "mxWS_mean",
+  "avWS_mean"
 )
 
 meteo_elevation <- c(
@@ -98,7 +105,11 @@ meteo_elevation <- c(
   "0 m a.s.l.",
   "1450 m a.s.l.",
   "1450 m a.s.l.",
-  "1450 m a.s.l."
+  "1450 m a.s.l.",
+  "average",
+  "average",
+  "average",
+  "average"
 )
 
 temp_var <- c(
@@ -113,6 +124,26 @@ radiation_var <- c(
   "R_00",
   "R_09",
   "R_14"
+)
+
+UWD_var <- c(
+  "U_WD_00",
+  "U_WD_14"
+)
+
+VWD_var <- c(
+  "V_WD_00",
+  "V_WD_14"
+)
+
+mxWS_var <- c(
+  "mxWS_00",
+  "mxWS_14"
+)
+
+avWS_var <- c(
+  "avWS_00",
+  "avWS_14"
 )
 
 meteo_labels <- c(
@@ -139,7 +170,11 @@ meteo_labels <- c(
   "minimum wind speed [m/s]",
   "average wind speed [m/s]",
   "maximum wind speed [m/s]",
-  "minimum wind speed [m/s]"
+  "minimum wind speed [m/s]",
+  "wind direction (east/west)",
+  "wind direction (north/south)",
+  "maximum wind speed [m/s]",
+  "average wind speed [m/s]"
 )
 
 # Levels
@@ -174,7 +209,8 @@ metadata <- c(
 
 data_var <- c(
   meteo_var,
-  "PM2.5"
+  "PM2.5",
+  "model"
 )
 
 ships_labels <- c(
@@ -182,6 +218,27 @@ ships_labels <- c(
   "Hurtigruten dummy",
   "All",
   "Cruise ships"
+)
+
+meteo_var_not_averraged <- c(
+  "radiation00",
+  "radiation933",
+  "radiation1450",
+  "temp00",
+  "temp770",
+  "temp933",
+  "temp1280",
+  "temp1450",
+  "UWD00",
+  "UWD14",
+  "VWD00",
+  "VWD14",
+  "mxWS00",
+  "mnWS00",
+  "avWS00",
+  "mxWS14",
+  "mnWS14",
+  "avWS14"
 )
 
 # Day and Night hours for Norway (Geiranger)

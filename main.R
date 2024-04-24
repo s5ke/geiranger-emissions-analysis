@@ -20,7 +20,7 @@ load("/home/svenja/workspaces/geiranger-emissions-analysis/input-data/input2020_
 
 # adjust time (e.g. years to be included)
 firstYear <- 2015
-lastYear <- 2020
+lastYear <- 2019
 nYears <- lastYear - firstYear
 
 ## create constants

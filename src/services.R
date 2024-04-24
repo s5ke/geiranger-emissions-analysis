@@ -7,7 +7,7 @@ correlate <- function(a, b) {
   a <- replace(a, a == Inf, NA)
   a <- as.numeric(a)
   b <- as.numeric(b)
-  if (length(na.omit(a)) > 5 && length(na.omit(b)) > 5) {
+  if (length(na.omit(a)) > 3 && length(na.omit(b)) > 3) {
     cor <- cor.test(a, b,
       method = "pearson",
       na.action = na.exclude
@@ -87,4 +87,23 @@ get_window_sums <- function(df, input_vector, max_width, align) {
   )
   result <- as.data.frame(cbind(result, df))
   result
+}
+
+# functions to get lead or lag value based on 'n'
+lead_by_n <- function(x, n) {
+  result <- rep(NA, length(x))
+  for (i in seq_along(n)) {
+    next_index <- min(i + n[i], length(x))
+    result[i] <- x[next_index]
+  }
+  return(result)
+}
+
+lag_by_n <- function(x, n) {
+  result <- rep(NA, length(x))
+  for (i in seq_along(n)) {
+    prev_index <- max(i - n[i], 1)
+    result[i] <- x[prev_index]
+  }
+  return(result)
 }
