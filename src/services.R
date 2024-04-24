@@ -7,7 +7,7 @@ correlate <- function(a, b) {
   a <- replace(a, a == Inf, NA)
   a <- as.numeric(a)
   b <- as.numeric(b)
-  if (length(na.omit(a)) > 5 && length(na.omit(b)) > 5) {
+  if (length(na.omit(a)) > 3 && length(na.omit(b)) > 3) {
     cor <- cor.test(a, b,
       method = "pearson",
       na.action = na.exclude

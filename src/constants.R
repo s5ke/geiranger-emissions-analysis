@@ -31,6 +31,9 @@ palette_meteo <- c(
   "#ffea46"
 )
 
+colfunc <- colorRampPalette(c("#00204d",  "#ffea46"))
+palette_cluster <- colfunc(10)
+
 palette_ships <- c(
   "#00204d",
   "#52648d"
@@ -206,7 +209,8 @@ metadata <- c(
 
 data_var <- c(
   meteo_var,
-  "PM2.5"
+  "PM2.5",
+  "model"
 )
 
 ships_labels <- c(
