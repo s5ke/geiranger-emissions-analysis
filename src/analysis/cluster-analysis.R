@@ -1,7 +1,7 @@
 ## Cluster analysis
 n_cluster <- 7
 n_lag_days <- 100
-min_length_cluster <- 0
+min_length_cluster <- 2
 
 # restructure input
 # daily
@@ -109,12 +109,21 @@ calculate_cluster <- function(df, df_unscaled, n, min_length_cluster, var) {
     "exception",
     "cluster"
   )
-
   df <- as.data.frame(cbind(df, unscaled = df_unscaled))
 
   kmeans_reduced <- subset(df, df$smooth != "exception")
   n <- nrow(df) - nrow(kmeans_reduced)
   print(n)
+
+  rle <- rle(kmeans_reduced$cluster)
+  kmeans_reduced$length <- unlist(
+    sapply(seq_along(rle[[2]]), function(x) {
+      rep(
+        rle[[1]][x],
+        rle[[1]][x]
+      )
+    })
+  )
 
   kmeans_reduced
 }
@@ -493,35 +502,36 @@ p_lagged <- ggplot(cor_lead_pm) +
   geom_point(aes(
     x = lead, y = cor,
     group = paste(site, method),
-    col = site, shape = method
+    col = site
   ), size = 1.5, alpha = .3) +
   geom_point(aes(
     x = lead, y = sig,
     group = paste(site, method),
     col = site,
-    shape = method
   ), size = 1.5) +
   geom_line(aes(
     x = lead, y = cor,
     group = paste(site, method),
     col = site,
-    linetype = method
   ), size = .3, alpha = .3) +
   geom_line(aes(
     x = lead, y = sig,
     group = paste(site, method),
     col = site,
-    linetype = method
   ), size = .3) +
   facet_wrap(~cluster, ncol = 1) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 20)) +
-  scale_color_manual(values = c(palette_elevation, "red")) +
+  scale_color_manual(values = c(palette_elevation, "black")) +
   theme_light() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
   ) +
-  labs(y = "Correlation coefficient (Pearson)", x = "Time (lead) [days]")
+  labs(
+    y = "Correlation coefficient (Pearson)",
+    x = "Time (lead) [days]",
+    col = "elevation"
+  )
 p_lagged
 
 cairo_pdf("cluster_analysis_on_season.pdf",
@@ -535,26 +545,49 @@ ggarrange(
 )
 dev.off()
 
-p_lagged_all <- ggplot(subset(cor_lead_pm, cor_lead_pm$cluster == "All clusters")) +
+p_lagged_all <- ggplot(subset(
+  cor_lead_pm,
+  cor_lead_pm$cluster == "All clusters"
+)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_hline(yintercept = c(0.5), linetype = "dashed", col = "grey") +
-  # geom_ribbon(aes(x = lead, y = cor, ymin = ci_5, ymax = ci_95, group = paste(site, method), fill = site, shape = method), size = 1, alpha = .3) + #Optional! Konfidenzintervall hinzufügen
-  geom_point(aes(x = lead, y = cor, group = paste(site, method), col = site, shape = method), size = 1, alpha = .3) +
-  geom_point(aes(x = lead, y = sig, group = paste(site, method), col = site, shape = method), size = 1) +
-  geom_line(aes(x = lead, y = cor, group = paste(site, method), col = site, linetype = method), size = .3, alpha = .3) +
-  geom_line(aes(x = lead, y = sig, group = paste(site, method), col = site, linetype = method), size = .3) +
+  geom_point(aes(
+    x = lead,
+    y = cor,
+    group = paste(site, method),
+    col = site
+  ), size = 1, alpha = .3) +
+  geom_point(aes(
+    x = lead,
+    y = sig,
+    group = paste(site, method),
+    col = site
+  ), size = 1) +
+  geom_line(aes(
+    x = lead,
+    y = cor,
+    group = paste(site, method),
+    col = site
+  ), size = .3, alpha = .3) +
+  geom_line(aes(
+    x = lead,
+    y = sig,
+    group = paste(site, method),
+    col = site
+  ), size = .3) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 100)) +
-  scale_color_manual(values = palette) +
-  scale_fill_manual(values = palette_light) +
+  scale_color_manual(values = c(palette_elevation, "black")) +
   theme_light() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
   ) +
-  labs(y = "Correlation coefficient (Pearson)", x = "Time (lead) [days]")
+  labs(
+    y = "Correlation coefficient (Pearson)",
+    x = "Time (lead) [days]",
+    col = "elevation"
+  )
 p_lagged_all
-cairo_pdf("correlation_on_season.pdf", width = 10, height = 4, pointsize = 10)
-p4
-dev.off()
 
-input_models <- input
+cairo_pdf("correlation_on_season.pdf", width = 10, height = 4, pointsize = 10)
+p_lagged_all
+dev.off()

@@ -316,3 +316,13 @@ day_night <- list(
   )
   # 10-15, twilight: 7-18
 )
+
+# breaks and x_axis_labels
+years <- c(firstYear:lastYear)
+start_numeric <- as.numeric(as.Date(paste0(firstYear, "-01-01")))
+x_labels <- c(unlist(sapply(years, function(x) c("", x))))
+x_breaks <- seq(start_numeric, (start_numeric + (length(x_labels)-1)*182.5), 182.5)
+
+season_brks <- c(59, 151, 243, 334)
+brks <- seq(start_numeric, (start_numeric + (length(years)-1)*365), 365)[-1]
+season_breaks <- sapply(brks, function(x) x + season_brks)

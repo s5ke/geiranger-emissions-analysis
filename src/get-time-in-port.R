@@ -4,8 +4,6 @@
 ships <- unlist(input_restructured$ships)
 n <- rep(0, nrow(input_restructured))
 ship_names <- get_ship_names(ships)
-remove <- c()
-ship_names <- ship_names[, -remove]
 
 # get number of hours in port
 input_ships <- list()
