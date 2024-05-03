@@ -540,7 +540,11 @@ cairo_pdf("cluster_analysis_on_season.pdf",
   pointsize = 10
 )
 ggarrange(
-  plotlist = list(p_cluster_transformed, p_boxplot, p_lagged), widths = c(1, 1, 3),
+  plotlist = list(
+    p_cluster_transformed,
+    boxplot,
+    p_lagged
+  ), widths = c(1, 1, 3),
   ncol = 3, align = "hv", common.legend = FALSE, labels = c("A", "B", "C")
 )
 dev.off()

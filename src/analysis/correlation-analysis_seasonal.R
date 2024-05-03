@@ -56,11 +56,11 @@ p_cor <- ggplot(correlation_results) +
   geom_hline(yintercept = 0, col = "grey") +
   geom_hline(yintercept = c(0.4, -0.4), col = "grey", linetype = "dashed") +
   geom_linerange(aes(
-    x = var, y = V1, ymin = V3, ymax = V4,
+    x = var, y = cor, ymin = V3, ymax = V4,
     group = elevation, col = elevation
   ), position = position_dodge(width = .5), size = .3, alpha = 1) +
   geom_col(aes(
-    x = var, y = V1,
+    x = var, y = cor,
     group = elevation, col = elevation, fill = elevation
   ), position = position_dodge(width = .5), width = 0.45, size = .3) +
   labs(col = "", fill = "") +
@@ -73,7 +73,7 @@ p_cor <- ggplot(correlation_results) +
 p_cor
 
 cairo_pdf("correlation_pm_meteo_season.pdf",
-  width = 8,
+  width = 10,
   height = 14,
   pointsize = 10
 )
