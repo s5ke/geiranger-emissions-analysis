@@ -2,10 +2,11 @@
 
 # Color palettes
 main_palette <- c(
-  "#00204d",
-  "#7c7b78",
-  "#ffea46",
-  "darkred"
+  "#2b2f6c",
+  "#564779",
+  "#9d6c82",
+  "#c17f8b",
+  "#de978f"
 )
 
 palette_light <- rgb(
@@ -16,33 +17,33 @@ palette_light <- rgb(
 )
 
 palette_elevation <- c(
-  "#00204d",
-  "#7c7b78",
-  "#ffea46"
+  "#2b2f6c",
+  "#9d6c82",
+  "#de978f"
 )
 
 palette_meteo <- c(
   "black",
   "darkred",
-  "#00204d",
-  "#52648d",
-  "#7c7b78",
-  "#cbba69",
-  "#ffea46"
+  "#2b2f6c",
+  "#564779",
+  "#9d6c82",
+  "#c17f8b",
+  "#de978f"
 )
 
-colfunc <- colorRampPalette(c("#00204d",  "#ffea46"))
+colfunc <- colorRampPalette(c("#2b2f6c", "#de978f"))
 palette_cluster <- colfunc(10)
 
 palette_ships <- c(
-  "#00204d",
-  "#52648d"
+  "#2b2f6c",
+  "#de978f"
 )
 
 palette_moving_window <- c(
-  low = "#FFEA46",
-  mid = "#7C7B78",
-  high = "#00204D"
+  low = "#de978f",
+  mid = "#9d6c82",
+  high = "#2b2f6c"
 )
 
 # define on-season (week)
@@ -316,3 +317,16 @@ day_night <- list(
   )
   # 10-15, twilight: 7-18
 )
+
+# breaks and x_axis_labels
+years <- c(firstYear:lastYear)
+start_numeric <- as.numeric(as.Date(paste0(firstYear, "-01-01")))
+x_labels <- c(unlist(sapply(years, function(x) c("", x))))
+x_breaks <- seq(
+  start_numeric,
+  (start_numeric + (length(x_labels) - 1) * 182.5), 182.5
+)
+
+season_brks <- c(59, 151, 243, 334)
+brks <- seq(start_numeric, (start_numeric + (length(years) - 1) * 365), 365)[-1]
+season_breaks <- sapply(brks, function(x) x + season_brks)

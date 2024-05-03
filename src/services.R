@@ -7,27 +7,32 @@ correlate <- function(a, b) {
   a <- replace(a, a == Inf, NA)
   a <- as.numeric(a)
   b <- as.numeric(b)
-  if (length(na.omit(a)) > 3 && length(na.omit(b)) > 3) {
-    cor <- cor.test(a, b,
+  nrow(na.omit(cbind(a,b))) > 3
+  coeff <- ifelse((nrow(na.omit(cbind(a,b))) > 3),
+    cor.test(a, b,
       method = "pearson",
       na.action = na.exclude
-    )$estimate
-    p <- cor.test(a, b,
+    )$estimate, NA
+  )
+  p_value <- ifelse((nrow(na.omit(cbind(a,b))) > 3),
+    cor.test(a, b,
       method = "pearson",
       na.action = na.exclude
-    )$p.value
-    ci_5 <- cor.test(a, b,
+    )$p.value, NA
+  )
+  ci_5 <- ifelse((nrow(na.omit(cbind(a,b))) > 3),
+    cor.test(a, b,
       method = "pearson",
       na.action = na.exclude
-    )$conf.int[1]
-    ci_95 <- cor.test(a, b,
+    )$conf.int[1], NA
+  )
+  ci_95 <- ifelse((nrow(na.omit(cbind(a,b))) > 3),
+    cor.test(a, b,
       method = "pearson",
       na.action = na.exclude
-    )$conf.int[2]
-    c(cor, p, ci_5, ci_95)
-  } else {
-    c(NA, NA, NA, NA)
-  }
+    )$conf.int[2], NA
+  )
+  c(coeff, p_value, ci_5, ci_95)
 }
 
 ## function to split columns into day and night while retaining length

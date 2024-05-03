@@ -5,10 +5,10 @@
 
 # system("R")
 
-options(scipen = 999) # turns of scientific notations
+options(scipken = 999) # turns of scientific notations
 
 ## set working directory
-dir <- "~/workspaces/geiranger-emissions-analysis/output" # set directory for output
+dir <- "~/workspaces/geiranger-emissions-analysis/output"
 setwd(dir)
 
 # load all dependencies
@@ -16,7 +16,7 @@ source("../dependencies.R")
 
 ## Input
 # load data
-load("/home/svenja/workspaces/geiranger-emissions-analysis/input-data/input2020_2023") # input
+load("../input-data/input2020_2023") # input
 
 # adjust time (e.g. years to be included)
 firstYear <- 2015
@@ -33,3 +33,8 @@ source("../src/services.R")
 source("../src/data-preperation.R")
 source("../src/get-time-in-port.R")
 source("../src/aggregate-hourly-data.R")
+
+# export <- input_daily[, -which(names(input_daily) %in% ship_names)]
+# export$ferry <- input_daily$Ferry
+# export$date.1 <- NULL
+# fwrite(export, file = "../input-data/input_daily.csv.gz", compress = c("gzip"))

@@ -31,13 +31,12 @@ p_ships_bar <- ggplot(
     position = position_stack()
   ) +
   theme_light() +
-  scale_x_date(expand = c(0, 0), date_breaks = "1 year", date_labels = "%Y") +
+   scale_x_continuous(expand = c(0, 0), breaks = x_breaks, labels = x_labels) +
   scale_y_continuous(expand = c(0, 0)) +
   scale_color_manual(values = palette_ships) +
   scale_fill_manual(values = palette_ships) +
   labs(x = "", y = "Hours in port (sum)", fill = "", col = "") +
   theme(
-    axis.text.x = element_text(hjust = -6),
     panel.grid.major.x = element_line(color = "grey", linewidth = 1)
   )
 p_ships_bar

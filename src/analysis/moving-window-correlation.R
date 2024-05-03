@@ -1,5 +1,5 @@
 ## moving window correlation
-max_width <- 120 # set maximum window width
+max_width <- 120  # set maximum window width
 sig_niveau <- 0.1
 
 # restructure input
@@ -61,15 +61,8 @@ input_year <- split(
 )
 
 for (i in seq_along(input_year)) {
-  input_year_on[[i]] <- input_year_on[[i]][order(input_year_on[[i]]$date), ]
   input_year[[i]] <- input_year[[i]][order(input_year[[i]]$date), ]
 
-  input_year_on[[i]] <- get_window_sums(
-    input_year_on[[i]],
-    input_year_on[[i]]$port,
-    max_width,
-    "right"
-  )
   input_year[[i]] <- get_window_sums(
     input_year[[i]],
     input_year[[i]]$port,
@@ -77,8 +70,8 @@ for (i in seq_along(input_year)) {
     "right"
   )
 }
-input_year_on <- as.data.frame(do.call(rbind, input_year_on))
 input_year <- as.data.frame(do.call(rbind, input_year))
+colSums(input_year[, c(1:max_width)], na.rm = TRUE)
 
 input_week_sums <- split(
   input_year,
@@ -106,9 +99,9 @@ input_week_sums <- lapply(input_week_sums, function(x) {
 input_week_sums <- as.data.frame(do.call(rbind, input_week_sums))
 
 input_year_on <- subset(
-  input_year_on,
-  input_year_on$week > on_season_start &
-    input_year_on$week < on_season_end
+  input_year,
+  input_year$week > on_season_start &
+    input_year$week < on_season_end
 )
 input_year_on <- split(
   input_year_on,
@@ -121,12 +114,18 @@ input_year_on <- split(
 
 # calculate correlations
 corr <- list()
+input_corr <- list()
+dup <- list()
 for (i in seq_along(input_year_on)) {
+  dup[[i]] <- duplicated(colnames(input_year_on[[i]]))
+  input_corr[[i]] <- input_year_on[[i]][c(1:max_width)]
   corr[[i]] <- sapply(
-    input_year_on[[i]][, 1:max_width],
-    function(x) correlate(x, input_year_on[[i]]$PM2.5)
+    input_corr[[i]],
+    function(y) correlate(y, input_year_on[[i]]$PM2.5)
   )
 }
+length(corr)
+length(input_year_on)
 
 corr_result <- data.frame(
   cor = unlist(lapply(corr, function(x) x[1, ])),
@@ -229,6 +228,8 @@ breaks_on_season <- c(
   49.93
 )
 
+corr_result$elevation <- factor(corr_result$elevation, levels = elevation)
+
 p_moving_window <- ggplot(
   subset(
     corr_result,
@@ -249,7 +250,7 @@ p_moving_window <- ggplot(
       trans = ~ (.x * 10) * 1.5,
       name = expression(
         "Measured PM"[2.5] *
-          " concentration [µg/10m³]/Sum of time spent at port [hours]"
+          " concentration [µg/100m³]/Sum of time spent at port [hours]"
       )
     )
   ) +
