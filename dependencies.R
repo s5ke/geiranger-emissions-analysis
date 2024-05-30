@@ -27,6 +27,7 @@ library(stats)
 library(matrixStats)
 library(rlist)
 library(quantmod)
+library(growthmodels)
 
 library(devtools)
 library(stringr)

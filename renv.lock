@@ -38,20 +38,6 @@
       "Repository": "CRAN",
       "Hash": "a8235afbcd6316e6e91433ea47661013"
     },
-    "BiodiversityR": {
-      "Package": "BiodiversityR",
-      "Version": "2.15-3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "Rcmdr",
-        "ggplot2",
-        "tcltk",
-        "vegan"
-      ],
-      "Hash": "fe6c508ed38e3c9b28a5acb38514a222"
-    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.1.3",
@@ -256,58 +242,6 @@
       ],
       "Hash": "45f0398006e83a5b10b72a90663d8d8c"
     },
-    "Rcmdr": {
-      "Package": "Rcmdr",
-      "Version": "2.9-0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "RcmdrMisc",
-        "abind",
-        "car",
-        "effects",
-        "grDevices",
-        "graphics",
-        "lme4",
-        "methods",
-        "relimp",
-        "splines",
-        "stats",
-        "tcltk",
-        "tcltk2",
-        "tools",
-        "utils"
-      ],
-      "Hash": "f5c0be1ca210552c2f09e9d2569a3ffe"
-    },
-    "RcmdrMisc": {
-      "Package": "RcmdrMisc",
-      "Version": "2.9-0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "Hmisc",
-        "MASS",
-        "R",
-        "abind",
-        "car",
-        "colorspace",
-        "e1071",
-        "foreign",
-        "grDevices",
-        "graphics",
-        "haven",
-        "lattice",
-        "nortest",
-        "readstata13",
-        "readxl",
-        "sandwich",
-        "stats",
-        "utils"
-      ],
-      "Hash": "dc0b694145de9f2de324eb51590e67c3"
-    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.12",
@@ -345,23 +279,6 @@
         "utils"
       ],
       "Hash": "acb0a5bf38490f26ab8661b467f4f53a"
-    },
-    "RgoogleMaps": {
-      "Package": "RgoogleMaps",
-      "Version": "1.4.5.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "grDevices",
-        "graphics",
-        "methods",
-        "png",
-        "sp",
-        "stats",
-        "utils"
-      ],
-      "Hash": "bffdcd07380ea0a95228588f8aa93734"
     },
     "SparseM": {
       "Package": "SparseM",
@@ -512,13 +429,6 @@
         "utils"
       ],
       "Hash": "9fe98599ca456d6552421db0d6772d8f"
-    },
-    "bitops": {
-      "Package": "bitops",
-      "Version": "1.0-7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "b7d8d8ee39869c18d8846a184dd8a1af"
     },
     "blob": {
       "Package": "blob",
@@ -947,23 +857,6 @@
         "graphics"
       ],
       "Hash": "81dc74aa2dbe87672a8f73934fcf2dae"
-    },
-    "dendRoAnalyst": {
-      "Package": "dendRoAnalyst",
-      "Version": "0.1.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "base",
-        "boot",
-        "grDevices",
-        "graphics",
-        "pspline",
-        "stats",
-        "zoo"
-      ],
-      "Hash": "e6229e7b91fbd1a5204da261a16e9a64"
     },
     "desc": {
       "Package": "desc",
@@ -1462,35 +1355,6 @@
         "tidyr"
       ],
       "Hash": "ae0e011aa23b95682e2872fd7a7e5682"
-    },
-    "ggmap": {
-      "Package": "ggmap",
-      "Version": "3.0.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "RgoogleMaps",
-        "bitops",
-        "cli",
-        "digest",
-        "dplyr",
-        "ggplot2",
-        "glue",
-        "grid",
-        "httr",
-        "jpeg",
-        "magrittr",
-        "plyr",
-        "png",
-        "purrr",
-        "rlang",
-        "scales",
-        "stringr",
-        "tibble",
-        "tidyr"
-      ],
-      "Hash": "c883525d360469c2f324102ae5aecd33"
     },
     "ggnewscale": {
       "Package": "ggnewscale",
@@ -2163,48 +2027,6 @@
       ],
       "Hash": "2b4b803af6017e93b67ddaf0eacba918"
     },
-    "lme4": {
-      "Package": "lme4",
-      "Version": "1.1-35.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "MASS",
-        "Matrix",
-        "R",
-        "Rcpp",
-        "RcppEigen",
-        "boot",
-        "graphics",
-        "grid",
-        "lattice",
-        "methods",
-        "minqa",
-        "nlme",
-        "nloptr",
-        "parallel",
-        "splines",
-        "stats",
-        "utils"
-      ],
-      "Hash": "07fb0c5b727b15b0ce40feb641498e4e"
-    },
-    "lmerTest": {
-      "Package": "lmerTest",
-      "Version": "3.1-3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "MASS",
-        "R",
-        "ggplot2",
-        "lme4",
-        "methods",
-        "numDeriv",
-        "stats"
-      ],
-      "Hash": "f04948de84602afc23bfa9f5427e954d"
-    },
     "lubridate": {
       "Package": "lubridate",
       "Version": "1.9.3",
@@ -2228,17 +2050,6 @@
       ],
       "Hash": "7ce2733a9826b3aeb1775d56fd305472"
     },
-    "mapdata": {
-      "Package": "mapdata",
-      "Version": "2.3.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "maps"
-      ],
-      "Hash": "67b0f7c0e47c72ac78632843bb1cce35"
-    },
     "mapproj": {
       "Package": "mapproj",
       "Version": "1.2.11",
@@ -2251,18 +2062,6 @@
         "stats"
       ],
       "Hash": "37090866afbdb09e6437ba0b25c307a2"
-    },
-    "maps": {
-      "Package": "maps",
-      "Version": "3.4.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "graphics",
-        "utils"
-      ],
-      "Hash": "644a88fb036ab50cee0b715394eefa1a"
     },
     "matrixStats": {
       "Package": "matrixStats",
@@ -2441,7 +2240,7 @@
     },
     "nlme": {
       "Package": "nlme",
-      "Version": "3.1-163",
+      "Version": "3.1-155",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -2451,17 +2250,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "8d1938040a05566f4f7a14af4feadd6b"
-    },
-    "nloptr": {
-      "Package": "nloptr",
-      "Version": "2.0.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "testthat"
-      ],
-      "Hash": "277c67a08f358f42b6a77826e4492f79"
+      "Hash": "74ad940dccc9e977189a5afe5fcdb7ba"
     },
     "nnet": {
       "Package": "nnet",
@@ -2646,17 +2435,6 @@
         "utils"
       ],
       "Hash": "c7bd3750eea3b3f5b2fdd56f22af151a"
-    },
-    "permute": {
-      "Package": "permute",
-      "Version": "0.9-7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "stats"
-      ],
-      "Hash": "abf0ca85c1c752e0d04f46334e635046"
     },
     "pillar": {
       "Package": "pillar",
@@ -2915,18 +2693,6 @@
       ],
       "Hash": "dd2b9319ee0656c8acf45c7f40c59de7"
     },
-    "pspline": {
-      "Package": "pspline",
-      "Version": "1.0-19",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "graphics",
-        "stats"
-      ],
-      "Hash": "c3b2cb25b3f5cd6ead9e3934170da0cf"
-    },
     "purrr": {
       "Package": "purrr",
       "Version": "1.0.2",
@@ -3026,20 +2792,6 @@
       ],
       "Hash": "25516ea66b1ed264e8c4a32b5d210770"
     },
-    "raster": {
-      "Package": "raster",
-      "Version": "3.6-23",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "methods",
-        "sp",
-        "terra"
-      ],
-      "Hash": "337d6d70f7d6bf78df236a5a53f09db0"
-    },
     "rcmdcheck": {
       "Package": "rcmdcheck",
       "Version": "1.4.0",
@@ -3085,16 +2837,6 @@
       ],
       "Hash": "9de96463d2117f6ac49980577939dfb3"
     },
-    "readstata13": {
-      "Package": "readstata13",
-      "Version": "0.10.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "Rcpp"
-      ],
-      "Hash": "be127ee4a3bb6591585db8ab9cc4247d"
-    },
     "readxl": {
       "Package": "readxl",
       "Version": "1.4.3",
@@ -3109,18 +2851,6 @@
         "utils"
       ],
       "Hash": "8cf9c239b96df1bbb133b74aef77ad0a"
-    },
-    "relimp": {
-      "Package": "relimp",
-      "Version": "1.0-5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "stats",
-        "utils"
-      ],
-      "Hash": "6f38128829f08da8a4131f835bb67850"
     },
     "rematch": {
       "Package": "rematch",
@@ -3428,19 +3158,6 @@
         "wk"
       ],
       "Hash": "f1cbe03bb3346f8e817518ffa20f9f5a"
-    },
-    "sandwich": {
-      "Package": "sandwich",
-      "Version": "3.0-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "stats",
-        "utils",
-        "zoo"
-      ],
-      "Hash": "dd5af939b8690baa8ee0bca996e99924"
     },
     "sass": {
       "Package": "sass",
@@ -3801,29 +3518,6 @@
       ],
       "Hash": "15b594369e70b975ba9f064295983499"
     },
-    "tcltk2": {
-      "Package": "tcltk2",
-      "Version": "1.2-11",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "tcltk"
-      ],
-      "Hash": "9b59f9f3b473ae3b081aaf47f9a5b680"
-    },
-    "terra": {
-      "Package": "terra",
-      "Version": "1.7-46",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "methods"
-      ],
-      "Hash": "d15182a8a20ffc5880e721bfa1bf4ce9"
-    },
     "testthat": {
       "Package": "testthat",
       "Version": "3.2.1",
@@ -4135,21 +3829,6 @@
         "rlang"
       ],
       "Hash": "c03fa420630029418f7e6da3667aac4a"
-    },
-    "vegan": {
-      "Package": "vegan",
-      "Version": "2.6-4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "MASS",
-        "R",
-        "cluster",
-        "lattice",
-        "mgcv",
-        "permute"
-      ],
-      "Hash": "659fe7589b8e0b16baa49043a61a0ce0"
     },
     "viridis": {
       "Package": "viridis",
