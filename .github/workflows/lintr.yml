@@ -38,6 +38,9 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@4e1feaf90520ec1215d1882fdddfe3411c08e492
 
+      - name: Setup renv
+        uses: r-lib/actions/setup-renv@v2
+
       - name: Setup lintr
         uses: r-lib/actions/setup-r-dependencies@4e1feaf90520ec1215d1882fdddfe3411c08e492
         with:
