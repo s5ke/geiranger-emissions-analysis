@@ -8,7 +8,6 @@ library(plyr)
 
 library(curl)
 library(xml2)
-library(rgl)
 library(systemfonts)
 library(httr)
 library(textshaping)

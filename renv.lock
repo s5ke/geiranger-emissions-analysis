@@ -2880,28 +2880,6 @@
       ],
       "Hash": "ae34cd56890607370665bee5bd17812f"
     },
-    "rgl": {
-      "Package": "rgl",
-      "Version": "1.2.8",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "R6",
-        "base64enc",
-        "grDevices",
-        "graphics",
-        "htmltools",
-        "htmlwidgets",
-        "jsonlite",
-        "knitr",
-        "magrittr",
-        "mime",
-        "stats",
-        "utils"
-      ],
-      "Hash": "ebf0bdc2d3cddc603abf3a091d4a4d38"
-    },
     "rlang": {
       "Package": "rlang",
       "Version": "1.1.3",
