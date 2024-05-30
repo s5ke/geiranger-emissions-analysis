@@ -6,7 +6,6 @@ library(httpgd) #added by `renvsc`
 
 library(plyr)
 
-library(units)
 library(curl)
 library(xml2)
 library(rgl)
@@ -63,9 +62,7 @@ library(cowplot)
 
 library(dlnm)
 library(mgcv)
-library(sf)
 library(rgdal)
-library(metR)
 
 library(plyr)
 library(dplR)
