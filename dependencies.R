@@ -62,7 +62,6 @@ library(cowplot)
 
 library(dlnm)
 library(mgcv)
-library(rgdal)
 
 library(plyr)
 library(dplR)
