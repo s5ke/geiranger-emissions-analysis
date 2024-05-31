@@ -1,7 +1,10 @@
 # renv::init #initialize renv
 # renv::activate() #activate renv
+# renv::install() # install packages
+# renv::remove('') # remove packages
 # synchronise packages from lock file if needed
 # renv::restore()
+# renv::snapshot() # update the lockfile.
 
 # system("R")
 

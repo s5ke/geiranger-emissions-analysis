@@ -6,10 +6,8 @@ library(httpgd) #added by `renvsc`
 
 library(plyr)
 
-library(units)
 library(curl)
 library(xml2)
-library(rgl)
 library(systemfonts)
 library(httr)
 library(textshaping)
@@ -30,7 +28,6 @@ library(quantmod)
 library(growthmodels)
 
 library(devtools)
-library(BiodiversityR)
 library(stringr)
 library(olsrr)
 library(mctest)
@@ -45,9 +42,6 @@ library(plsdepot)
 library(pls)
 
 library(Hmisc)
-library(lme4)
-library(nlme)
-library(lmerTest)
 library(sjPlot)
 library(effects)
 
@@ -65,17 +59,8 @@ library(viridisLite)
 library(viridis)
 library(cowplot)
 
-library(maps)
-library(mapdata)
-library(ggmap)
-library(raster)
-
 library(dlnm)
 library(mgcv)
-library(sf)
-library(rgdal)
-library(metR)
-library(dendRoAnalyst)
 
 library(plyr)
 library(dplR)
