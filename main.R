@@ -16,7 +16,7 @@ source("../dependencies.R")
 
 ## Input
 # load data
-load("../input-data/input2020_2023") # input
+load("../input-data/input2015_2023") # input
 
 # adjust time (e.g. years to be included)
 firstYear <- 2015
