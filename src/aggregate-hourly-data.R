@@ -1,8 +1,14 @@
 ## Calculate daily means from hourly data
 input_ships_daily <- aggregate(input_ships,
   by = list(input_restructured$site, input_restructured$day),
+<<<<<<< Updated upstream
   function(x) sum(x, na.rm = TRUE)
+=======
+  function(x) sum(na.omit(x))
+>>>>>>> Stashed changes
 )
+
+test <- split(input_ships, list(input_restructured$site, input_restructured$day))
 
 input_data_daily <- aggregate(input_restructured[, data_var],
   by = list(input_restructured$site, input_restructured$day),
