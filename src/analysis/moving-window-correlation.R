@@ -28,7 +28,7 @@ input_week <- lapply(input_week, function(x) {
   data.frame(
     PM2.5 = mean(x$PM2.5, na.rm = TRUE),
     # TODO: check if means are correct here (before: sum)
-    port = sum(x$port, na.rm = TRUE),
+    port = sum(na.omit(x$port)),
     site = first(x$site),
     var = first(x$var),
     week = first(x$week)
@@ -85,12 +85,12 @@ input_week_sums <- lapply(input_week_sums, function(x) {
   result <- list()
   for (i in c(1:max_width)) {
     result[[i]] <- data.frame(
-      values = sum(x[, paste0("V", i)], na.rm = TRUE)
+      values = sum(na.omit(x[, paste0("V", i)]))
     )
     colnames(result[[i]])[1] <- paste0("values", i)
   }
   result <- do.call(cbind, result)
-  result$port <- sum(x$port, na.rm = TRUE)
+  result$port <- sum(na.omit(x$port))
   result$site <- first(x$site)
   result$var <- first(x$var)
   result$week <- first(x$week)
@@ -103,6 +103,11 @@ input_year_on <- subset(
   input_year$week > on_season_start &
     input_year$week < on_season_end
 )
+input_year_on <- replace(input_year_on, input_year_on == 0, NA)
+
+test <- subset(input_year, input_year$year == 2018)
+View(test)
+
 input_year_on <- split(
   input_year_on,
   list(
@@ -126,7 +131,10 @@ for (i in seq_along(input_year_on)) {
 }
 length(corr)
 length(input_year_on)
-
+unlist(lapply(corr, function(x) x[1, ]))
+View(corr[[1]])
+View(input_year_on[[1]])
+names(corr)[1]
 corr_result <- data.frame(
   cor = unlist(lapply(corr, function(x) x[1, ])),
   p = unlist(lapply(corr, function(x) x[2, ])),
