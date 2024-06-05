@@ -24,21 +24,8 @@ input$day_night <- day_night
 
 # rename months
 month <- input$month
-old <- unique(input$month)
-new <- c(
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun"
-)
+old <- c(1:12)
+new <- months
 month[month %in% old] <- new[match(month, old, nomatch = 0)]
 input$month <- month
 
