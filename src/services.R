@@ -83,7 +83,7 @@ get_window_sums <- function(df, input_vector, max_width, align) {
       c(1:max_width), function(x) {
         zoo::rollapply(input_vector,
           width = x,
-          function(y) sum(y, na.rm = TRUE),
+          function(y) sum(na.omit(y)),
           fill = NA,
           align = align
         )

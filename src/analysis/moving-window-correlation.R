@@ -15,7 +15,10 @@ input_movingwindow <- data.frame(
   year = input_daily$year
 )
 
-# get weekly sums
+# Get weekly sums
+# Split input_movingwindow to get all desired variables (still daily) associated
+# to week of the year (e.g: week 1, PM2.5 420 m a.s.l.; 
+# week 1, PM2.5 90 m a.s.l., ... )
 input_week <- split(
   input_movingwindow,
   list(
@@ -24,6 +27,8 @@ input_week <- split(
     input_movingwindow$week
   )
 )
+# Calculating daily values associated to week
+# (mean for PM2.5, sum for hours at port)
 input_week <- lapply(input_week, function(x) {
   data.frame(
     PM2.5 = mean(x$PM2.5, na.rm = TRUE),
@@ -36,6 +41,9 @@ input_week <- lapply(input_week, function(x) {
 })
 input_week <- as.data.frame(do.call(rbind, input_week))
 
+#Print output, if needed
+view(input_week)
+
 # get on-season only
 input_movingwindow_on <- subset(
   input_movingwindow,
@@ -43,6 +51,11 @@ input_movingwindow_on <- subset(
     input_movingwindow$week < on_season_end
 )
 
+#Print output, if needed
+view(input_movingwindow_on)
+
+# Split input_movingwindow_on to get year-wise and site-wise
+# variables within the on-season
 input_year_on <- split(
   input_movingwindow_on,
   list(
@@ -51,6 +64,8 @@ input_year_on <- split(
     input_movingwindow_on$year
   )
 )
+# Split input_movingwindow_on to get year-wise and site-wise
+# variables for the entire timeframe
 input_year <- split(
   input_movingwindow,
   list(
@@ -60,6 +75,8 @@ input_year <- split(
   )
 )
 
+# Calculate window sums for each window width (1:max_width)
+# Based on daily data ships spent at port
 for (i in seq_along(input_year)) {
   input_year[[i]] <- input_year[[i]][order(input_year[[i]]$date), ]
 
@@ -72,7 +89,13 @@ for (i in seq_along(input_year)) {
 }
 input_year <- as.data.frame(do.call(rbind, input_year))
 colSums(input_year[, c(1:max_width)], na.rm = TRUE)
+#Print output, if needed
+view(input_year)
 
+#Prepare weekly sum-calculation: split input_year
+# We get weekly-based results in the second step,
+# i.e., daily hours spent at port per week, per year
+# and per elevation
 input_week_sums <- split(
   input_year,
   list(
@@ -97,7 +120,10 @@ input_week_sums <- lapply(input_week_sums, function(x) {
   result
 })
 input_week_sums <- as.data.frame(do.call(rbind, input_week_sums))
+#Print output, if needed
+view(input_week_sums)
 
+#Subset input_year_on
 input_year_on <- subset(
   input_year,
   input_year$week > on_season_start &
@@ -105,6 +131,8 @@ input_year_on <- subset(
 )
 input_year_on <- replace(input_year_on, input_year_on == 0, NA)
 
+#Print output, if needed
+view(input_year_on)
 test <- subset(input_year, input_year$year == 2018)
 View(test)
 
@@ -146,6 +174,8 @@ corr_result <- data.frame(
 corr_result$site <- sapply(strsplit(corr_result$id, "[.]"), "[[", 1)
 corr_result$var <- sapply(strsplit(corr_result$id, "[.]"), "[[", 2)
 corr_result$week <- as.numeric(sapply(strsplit(corr_result$id, "[.]"), "[[", 3))
+#Plot output, if needed
+view(corr_result)
 
 input_week <- subset(
   input_week,
@@ -159,6 +189,10 @@ input_week_sums <- subset(
     input_week_sums$week < on_season_end
 )
 
+#Here, we prepare the dataframe for the plot. Each week is listed consecutively
+# after another for each site/elevation and year. y refers to the cumulative sums
+# of ship arrivals, (120, 100, 50, 10 days), PM2.5 concentration, and the
+# non-cumulative time at port
 pinput_week <- data.frame(
   y = c(
     input_week_sums$values120 / 1000,
@@ -169,7 +203,7 @@ pinput_week <- data.frame(
     input_week$port / 10
   ),
   week = c(
-    rep(input_week_sums$site, 4),
+    rep(input_week_sums$week, 4),
     rep(input_week$week, 2)
   ),
   site = c(
@@ -187,6 +221,9 @@ pinput_week <- data.frame(
   ), each = nrow(input_week))
 )
 
+#Plot output, if needed
+view(pinput_week)
+
 corr_result$sig <- replace(
   corr_result$cor,
   corr_result$p > sig_niveau,
@@ -196,16 +233,26 @@ corr_result <- subset(
   corr_result,
   corr_result$var == "All"
 )
+
+#I don't get why we subset again?
 pinput_week <- subset(
   pinput_week,
   pinput_week$var == "All"
 )
+
+# Next, we want to separate the PM2.5 values and hours spent at port.
+# pinput_week will then contain weekly values for all years two times
+# after another; one time refering to PM2.5 concentration, another
+# time refering to time ships spent at port (non-cumulative)
 include <- c(
   "PM2.5 concentration",
   "Time ships spent in port [hours]"
 )
 pinput_week <- pinput_week[pinput_week$var_points %in% include, ]
+#Plot output, if needed
+view(pinput_week)
 
+#Replace "site" by "elevation" in corr_result, pinput_week, input_week_sums
 rename <- corr_result$site
 rename[rename %in% site] <- elevation[match(rename, site, nomatch = 0)]
 corr_result$elevation <- rename
@@ -219,6 +266,7 @@ rename[rename %in% site] <- elevation[match(rename, site, nomatch = 0)]
 input_week_sums$elevation <- rename
 
 # Plot
+#Set max window width to be plotted
 max_width_plot <- 100
 
 breaks_on_season <- c(
@@ -236,8 +284,11 @@ breaks_on_season <- c(
   49.93
 )
 
+#Change "elevation" to factor
 corr_result$elevation <- factor(corr_result$elevation, levels = elevation)
 
+#Define actual plot
+#First, we subset corr_result based on the max_width_plot
 p_moving_window <- ggplot(
   subset(
     corr_result,
