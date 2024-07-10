@@ -345,7 +345,7 @@ p_moving_window <- ggplot(
   )
 p_moving_window
 
-cairo_pdf("moving_window_correlation_new.pdf",
+cairo_pdf("moving_window_correlation_no_subset.pdf",
   width = 7,
   height = 10,
   pointsize = 12

@@ -6,12 +6,12 @@
 # renv::restore()
 # renv::snapshot() # update the lockfile.
 
-# system("R")
+ system("R")
 
 options(scipken = 999) # turns of scientific notations
 
 ## set working directory
-dir <- "~/workspaces/geiranger-emissions-analysis/output"
+dir <- "~/Promotion/Research/Papers/01_PM_2015_2019/02STOTEN/R_Svenja_github/geiranger-emissions-analysis/output"
 setwd(dir)
 
 # load all dependencies

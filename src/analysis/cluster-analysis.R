@@ -1,6 +1,6 @@
 ## Cluster analysis
 n_cluster <- 7
-n_lag_days <- 200
+n_lag_days <- 1000
 min_length_cluster <- 2
 
 # restructure input
@@ -632,6 +632,7 @@ input_pm_all <- input_pm
 input_pm_all$cluster <- rep("All clusters", nrow(input_pm_all))
 
 # Combine the PM2.5 data with the "All clusters" label
+
 # Here, we create a dataframe that contains scaled and unscaled data for each
 # site after another (row-wise) referring to the associated cluster. This
 # results in 2100 rows. After that, the blocks are repeated, but this time for
@@ -849,6 +850,6 @@ p_lagged_all <- ggplot(subset(
   )
 p_lagged_all
 
-cairo_pdf("correlation_on_season_200_days.pdf", width = 10, height = 4, pointsize = 10)
+cairo_pdf("correlation_on_season_1000_days.pdf", width = 10, height = 4, pointsize = 10)
 p_lagged_all
 dev.off()

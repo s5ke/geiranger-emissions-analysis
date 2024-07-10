@@ -155,7 +155,7 @@ p_meteo_daily <- ggplot(df_meteo_daily) +
   labs(
     linetype = "",
     x = "Day of year",
-    y = "Environmental variable",
+    y = "Meteorological variable",
     col = "elevation",
     fill = "elevation"
   ) +
